@@ -26,7 +26,7 @@ func ParseFullname(name string) Name {
 		parts = append(parts[:a+1], parts[a+2:]...)
 	}
 
-	if a := suffixIndex(parts); a > -1 && a > 0 {
+	if a := suffixIndex(parts); a > 0 {
 		parts[a-1] += " " + parts[a]
 		parts = append(parts[:a], parts[a+1:]...)
 	}
