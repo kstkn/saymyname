@@ -84,6 +84,15 @@ func TestAffix(t *testing.T) {
 			"D OVIDIO FABRIZIO MR",
 			Name{"DOVIDIO", "FABRIZIO", "MR"},
 		},
+		{
+			"HERRERO PONS JOSEP MR",
+			Name{"HERRERO", "PONS JOSEP", "MR"},
+		},
+		{
+			"PATTON ELISE MRS",
+			Name{"PATTON", "ELISE", "MRS"},
+		},
+		{},
 	}
 	for i, c := range cases {
 		c := c
