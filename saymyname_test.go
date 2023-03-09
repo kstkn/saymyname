@@ -42,23 +42,43 @@ func TestAffix(t *testing.T) {
 		},
 		{
 			"Clark Kent",
-			Name{"Clark", "Kent"},
+			Name{"Clark", "Kent", ""},
 		},
 		{
 			"Clark O Connor",
-			Name{"Clark", "OConnor"},
+			Name{"Clark", "OConnor", ""},
 		},
 		{
 			"Clark D Agostino",
-			Name{"Clark", "DAgostino"},
+			Name{"Clark", "DAgostino", ""},
 		},
 		{
 			"Robert Downey Jr.",
-			Name{"Robert", "Downey Jr."},
+			Name{"Robert", "Downey Jr.", ""},
 		},
 		{
 			"Downey Jr. Robert",
-			Name{"Downey Jr.", "Robert"},
+			Name{"Downey Jr.", "Robert", ""},
+		},
+		{
+			"CASSISA FABIEN MR",
+			Name{"CASSISA", "FABIEN", "MR"},
+		},
+		{
+			"MORENO BUSTOS RAMON",
+			Name{"MORENO", "BUSTOS RAMON", ""},
+		},
+		{
+			"BACH CONNY MRS",
+			Name{"BACH", "CONNY", "MRS"},
+		},
+		{
+			"LANUZA/LIONEL P",
+			Name{"LANUZA/LIONEL", "P", ""},
+		},
+		{
+			"JACHOWICZ DELAUNEY JOANNA",
+			Name{"JACHOWICZ", "DELAUNEY JOANNA", ""},
 		},
 	}
 	for i, c := range cases {

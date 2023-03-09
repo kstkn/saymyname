@@ -1,10 +1,16 @@
 package saymyname
 
-import "strings"
+import (
+	"strings"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
+)
 
 type Name struct {
-	First string
-	Last  string
+	First      string
+	Last       string
+	Salutation string
 }
 
 func ParseFullname(name string) Name {
@@ -25,23 +31,28 @@ func ParseFullname(name string) Name {
 		parts = append(parts[:a], parts[a+1:]...)
 	}
 
+	out := Name{}
+	if a := titleIndex(parts); a > -1 && a > 0 {
+		out.Salutation = parts[a]
+		parts = append(parts[:a], parts[a+1:]...)
+	}
+
 	if len(parts) == 1 {
-		return Name{First: name}
+		out.First = name
+		return out
 	}
 
 	if len(parts) > 1 {
-		return Name{
-			First: parts[0],
-			Last:  strings.Join(parts[1:], " "),
-		}
+		out.First = parts[0]
+		out.Last = strings.Join(parts[1:], " ")
 	}
 
-	return Name{}
+	return out
 }
 
 func affixIndex(parts []string) int {
 	for i, p := range parts {
-		if _, ok := Affixes[p]; ok {
+		if _, ok := Affixes[strings.Title(p)]; ok {
 			return i
 		}
 	}
@@ -51,6 +62,15 @@ func affixIndex(parts []string) int {
 func suffixIndex(parts []string) int {
 	for i, p := range parts {
 		if _, ok := Suffixes[p]; ok {
+			return i
+		}
+	}
+	return -1
+}
+
+func titleIndex(parts []string) int {
+	for i, p := range parts {
+		if _, ok := Titles[cases.Title(language.Und).String(p)]; ok {
 			return i
 		}
 	}
