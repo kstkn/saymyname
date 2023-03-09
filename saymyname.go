@@ -8,7 +8,12 @@ type Name struct {
 }
 
 func ParseFullname(name string) Name {
-	parts := strings.Split(strings.TrimSpace(name), " ")
+	name = strings.TrimSpace(name)
+	if name == "" {
+		return Name{}
+	}
+
+	parts := strings.Split(name, " ")
 
 	if a := affixIndex(parts); a > -1 && a < len(parts)-1 {
 		parts[a] += parts[a+1]
@@ -24,7 +29,7 @@ func ParseFullname(name string) Name {
 		return Name{First: name}
 	}
 
-	if len(parts) >= 2 {
+	if len(parts) > 1 {
 		return Name{
 			First: parts[0],
 			Last:  strings.Join(parts[1:], " "),

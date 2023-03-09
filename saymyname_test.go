@@ -13,6 +13,30 @@ func TestAffix(t *testing.T) {
 		out Name
 	}{
 		{
+			"",
+			Name{},
+		},
+		{
+			" ",
+			Name{},
+		},
+		{
+			"Jr",
+			Name{First: "Jr"},
+		},
+		{
+			"Dr",
+			Name{First: "Dr"},
+		},
+		{
+			"Mr",
+			Name{First: "Mr"},
+		},
+		{
+			"D",
+			Name{First: "D"},
+		},
+		{
 			"Chris",
 			Name{First: "Chris"},
 		},
